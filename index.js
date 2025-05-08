@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 
 const ChatGPTCopilot = () => {
     const [message, setMessage] = useState('');
@@ -16,7 +13,7 @@ const ChatGPTCopilot = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer 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`,
+                    'Authorization': `Bearer YOUR_OPENAI_API_KEY`,
                 },
                 body: JSON.stringify({
                     model: 'gpt-4',
@@ -35,21 +32,24 @@ const ChatGPTCopilot = () => {
 
     return (
         <div className="flex flex-col items-center p-6 gap-4 min-h-screen bg-gray-100">
-            <Card className="w-full max-w-2xl shadow-lg rounded-2xl">
-                <CardContent>
-                    <h2 className="text-2xl font-semibold mb-4">Your Personal Copilot</h2>
-                    <Input
-                        placeholder="Ask me anything..."
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        className="w-full mb-4 p-3 rounded-2xl"
-                    />
-                    <Button onClick={handleSendMessage} disabled={loading} className="w-full py-2 rounded-2xl bg-blue-600 text-white">
-                        {loading ? 'Thinking...' : 'Send'}
-                    </Button>
-                    {response && <p className="mt-4 text-gray-700 p-4 rounded-2xl bg-white shadow">{response}</p>}
-                </CardContent>
-            </Card>
+            <div className="w-full max-w-2xl bg-white p-6 rounded-2xl shadow-lg">
+                <h2 className="text-2xl font-semibold mb-4">Your Personal Copilot</h2>
+                <input
+                    type="text"
+                    placeholder="Ask me anything..."
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    className="w-full mb-4 p-3 rounded-2xl border border-gray-300"
+                />
+                <button
+                    onClick={handleSendMessage}
+                    disabled={loading}
+                    className="w-full py-2 rounded-2xl bg-blue-600 text-white"
+                >
+                    {loading ? 'Thinking...' : 'Send'}
+                </button>
+                {response && <p className="mt-4 text-gray-700 p-4 rounded-2xl bg-gray-50">{response}</p>}
+            </div>
         </div>
     );
 };
