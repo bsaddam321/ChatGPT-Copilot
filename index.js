@@ -16,7 +16,7 @@ const ChatGPTCopilot = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer YOUR_OPENAI_API_KEY`,
+                    'Authorization': `Bearer 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`,
                 },
                 body: JSON.stringify({
                     model: 'gpt-4',
